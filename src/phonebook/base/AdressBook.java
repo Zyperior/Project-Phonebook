@@ -9,5 +9,10 @@ import java.util.ArrayList;
 
 public class AdressBook {
 
+	/*
+	 * contacts field is a list that contains Contact objects.
+	 * adding it as an Arraylist for now
+	 */
+	ArrayList<Contact> contacts;
 	
 }
