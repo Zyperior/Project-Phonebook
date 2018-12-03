@@ -1,6 +1,5 @@
 /* Date dd-mm-yyyy: 12-03-2018
  * Author: Gustav Ljungberg
- * 
 */
 
 package phonebook.base;
@@ -14,5 +13,15 @@ public class AdressBook {
 	 * adding it as an Arraylist for now
 	 */
 	ArrayList<Contact> contacts;
+	
+	/*
+	 * no args constructor
+	 * initializes contacts list
+	 */
+	public AdressBook() {
+		this.contacts = new ArrayList<>();
+	}
+	
+	
 	
 }
