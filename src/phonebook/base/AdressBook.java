@@ -46,10 +46,22 @@ public class AdressBook {
 	}
 	
 	//(in progress)
-	//This method removes selected contact
+	//This method removes selected contact from contacts arraylist
 	public void removeContact() {
 		
 	}
+	
+	//(in progress)
+	//searches for specifik Contact/contacts using phoneNumber, firstName, LastName.
+	//returns an arraylist containing all contacts matching the search terms
+	public ArrayList<Contact> searchContacts() {
+
+		return null;
+	}
+	
+	
+	
+	
 	
 	
 	
