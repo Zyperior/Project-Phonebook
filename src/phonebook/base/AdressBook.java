@@ -26,8 +26,7 @@ public class AdressBook {
 		}else {
 			this.contacts = new ArrayList<>();
 		}
-	}
-	
+	}	
 	/*
 	 * no args constructor
 	 * initializes contacts list
@@ -36,6 +35,23 @@ public class AdressBook {
 		this.contacts = new ArrayList<>();
 	}
 
+	
+	/*
+	 * adds a Contact object to the arraylist contacts if the Contact object is successfully verified
+	 */
+	public void addContact(Contact contact) {
+		if (verifyContactObject(contact)) {
+			this.contacts.add(contact);
+		}
+	}
+	
+	//(in progress)
+	//This method removes selected contact
+	public void removeContact() {
+		
+	}
+	
+	
 	
 	/*
 	 * returns a String featuring Contact.toString() of all Contact objects in the ArrayList contacts.
@@ -52,7 +68,6 @@ public class AdressBook {
 		}
 		return contactList;
 	}
-	
 	/*
 	 * Verifies that an arrayList containing contacts does not equal to null
 	 * returns true if not equal to null.
@@ -65,18 +80,14 @@ public class AdressBook {
 		}
 	}
 
-
-	 
-	 
-	 /*^
+	 /*
 	  * Verifies that an Contact object is not equal to null and that the fields are of correct type
 	  * This method assumes that Contact fields use the following types firstName:String, lastName:String, phoneNumber:int.
 	  * the method throws an exception if any Contact is null or any of the fields are of invalid types 
 	  * returns true if there isn't any exceptions
 	  * is currently commented out to not cause compile error. 
 	  */
-	 
-//	 private boolean verifyContactObject(Contact contact) {
+	 private boolean verifyContactObject(Contact contact) {
 //		 Number n;
 //		 if (contact == null) {
 //			 throw new NullPointerException("ERROR! Contact can not null!");
@@ -91,10 +102,9 @@ public class AdressBook {
 //		 }else if (!Integer.class.equals(contact.getPhoneNumber().getClass())) {
 //			 throw new Exception("ERROR! phoneNumber must be of type int");
 //		 }else {
-//			 return true;
-//		 }
+			 return true;
+		 }
 //	 }
-	
 	
 	public ArrayList<Contact> getContacts() {
 		return contacts;
