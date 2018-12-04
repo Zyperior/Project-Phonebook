@@ -6,6 +6,7 @@ package phonebook.base;
 
 import java.util.ArrayList;
 
+
 public class AdressBook {
 
 	/*
@@ -30,7 +31,7 @@ public class AdressBook {
 	@Override
 	public String toString() {
 		String contactList = null; 
-		if (contacts != null) {
+		if (verifyContactArray(contacts)) {
 			contactList = "";
 			for (Contact c : contacts) {
 				contactList += c.toString();
@@ -39,8 +40,47 @@ public class AdressBook {
 		return contactList;
 	}
 	
+	/*
+	 * Verifies that an arrayList containing contacts does not equal to null
+	 * returns true if not equal to null.
+	 */
+	 private boolean verifyContactArray(ArrayList<Contact> contacts) {
+		 if (contacts != null) {
+			 return true;
+		 }else {
+			 return false;
+		 }
+	 }
+	 
+	 
+	 /*^
+	  * Verifies that an Contact object is not equal to null and that the fields are of correct type
+	  * This method assumes that Contact fields use the following types firstName:String, lastName:String, phoneNumber:int.
+	  * the method throws an exception if any Contact is null or any of the fields are of invalid types 
+	  * returns true if there isn't any exceptions
+	  * is currently commented out to not cause compile error. 
+	  */
+	 
+//	 private boolean verifyContactObject(Contact contact) {
+//		 Number n;
+//		 if (contact == null) {
+//			 throw new NullPointerException("ERROR! Contact can not null!");
+//			 return false;
+//		 }if (contact.getPhoneNumber != null) {
+//			 n = contact.getPhoneNumber();
+//		 }
+//		 if(!contact.getFirstName().getClass().equals(String.class)){
+//			 throw new Exception("ERROR! firstName must be a String");
+//		 }else if(!contact.getLastName().getClass().equals(String.class)){
+//			 throw new Exception("ERROR! lastName must be a String");
+//		 }else if (!Integer.class.equals(contact.getPhoneNumber().getClass())) {
+//			 throw new Exception("ERROR! phoneNumber must be of type int");
+//		 }else {
+//			 return true;
+//		 }
+//	 }
 	
-
+	
 	
 	
 }
