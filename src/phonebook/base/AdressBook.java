@@ -21,7 +21,26 @@ public class AdressBook {
 	public AdressBook() {
 		this.contacts = new ArrayList<>();
 	}
+
 	
+	/*
+	 * returns a String featuring Contact.toString() of all Contact objects in the ArrayList contacts.
+	 * If contacts have not yet been initialized, toString will return null.
+	 */
+	@Override
+	public String toString() {
+		String contactList = null; 
+		if (contacts != null) {
+			contactList = "";
+			for (Contact c : contacts) {
+				contactList += c.toString();
+			}
+		}
+		return contactList;
+	}
+	
+	
+
 	
 	
 }
