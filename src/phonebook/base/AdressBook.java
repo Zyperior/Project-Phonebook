@@ -59,7 +59,11 @@ public class AdressBook {
 		return null;
 	}
 	
-	
+	//(in progress)
+	//selects a Contact object from search result
+	public Contact selectContact() {
+		return null;
+	}
 	
 	
 	
