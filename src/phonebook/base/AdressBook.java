@@ -57,13 +57,15 @@ public class AdressBook {
 	 * Verifies that an arrayList containing contacts does not equal to null
 	 * returns true if not equal to null.
 	 */
-	 private boolean verifyContactArray(ArrayList<Contact> contacts) {
-		 if (contacts != null) {
-			 return true;
-		 }else {
-			 return false;
-		 }
-	 }
+	private boolean verifyContactArray(ArrayList<Contact> contacts) {
+		if (contacts != null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+
 	 
 	 
 	 /*^
@@ -94,6 +96,8 @@ public class AdressBook {
 //	 }
 	
 	
-	
+	public ArrayList<Contact> getContacts() {
+		return contacts;
+	}	
 	
 }
