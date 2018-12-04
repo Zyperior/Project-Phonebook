@@ -16,6 +16,19 @@ public class AdressBook {
 	ArrayList<Contact> contacts;
 	
 	/*
+	 * Constructor taking an arrayList<Contact> as argument
+	 * if not null the constructor instantiates an ArrayList based on the parameter
+	 * else instantiates a new ArrayList. 
+	 */
+	public AdressBook(ArrayList<Contact> contacts) {
+		if (verifyContactArray(contacts)) {
+			this.contacts = new ArrayList<>(contacts);
+		}else {
+			this.contacts = new ArrayList<>();
+		}
+	}
+	
+	/*
 	 * no args constructor
 	 * initializes contacts list
 	 */
