@@ -54,7 +54,7 @@ public class AdressBook {
 	//(in progress)
 	//searches for Contact/contacts using phoneNumber, firstName, LastName, location.
 	//returns an arraylist containing all contacts matching the search terms
-	public ArrayList<Contact> searchContacts(String lastName, String firstName, String location, String phonenumber) {
+	public ArrayList<VisualContact> searchContacts(String lastName, String firstName, String location, String phonenumber) {
 		
 		ArrayList<String> searchTerms = new ArrayList<>();
 
@@ -67,7 +67,7 @@ public class AdressBook {
 		if (phonenumber.length() > 0 && phonenumber != null) 
 			searchTerms.add(phonenumber);
 		
-		ArrayList<Contact> searchResult = new ArrayList<>();
+		ArrayList<VisualContact> searchResult = new ArrayList<>();
 		
 		for (Contact c : this.contacts) {
 			int matches = 0;
@@ -75,15 +75,14 @@ public class AdressBook {
 			for (String s : searchTerms) {
 				System.out.println(searchTerms.size());
 				s=s.toLowerCase();
-				if (c.toString().toLowerCase().contains(s))
+				if (c.toString().toLowerCase().contains(s)) {
 					System.out.println(s + " exists");
 					matches++;
+					}
 					System.out.println("Matches: " + matches);
-				if (matches == searchTerms.size())
-					searchResult.add(c);
-				
-					
-					
+				if (matches == searchTerms.size()) {
+					searchResult.add(new VisualContact(c));
+				}
 			}
 		}
 		return searchResult;

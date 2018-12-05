@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import phonebook.base.AdressBook;
 import phonebook.base.Contact;
+import phonebook.base.VisualContact;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ public class Controller {
 
     AdressBook adressBook = new AdressBook();
 
-    List<Contact> tempList;
+    List<VisualContact> tempList;
 
     public Controller(){}
 
