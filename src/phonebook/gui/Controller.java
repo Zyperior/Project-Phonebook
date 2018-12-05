@@ -4,8 +4,6 @@ Author: Andreas Albihn
  */
 package phonebook.gui;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,7 +12,6 @@ import phonebook.base.AdressBook;
 import phonebook.base.Contact;
 import phonebook.base.VisualContact;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -56,7 +53,7 @@ public class Controller {
     updates tables with list objects returned from adressbook search function.
      */
     private void updateTable(){
-        tempList = adressBook.searchContacts();
+        //tempList = adressBook.searchContacts();
         ObservableList<Contact> observableTempList = FXCollections.observableList(tempList);
         for (Contact c : observableTempList) {
 
