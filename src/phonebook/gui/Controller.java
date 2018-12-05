@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import phonebook.base.AdressBook;
 import phonebook.base.Contact;
 import phonebook.base.VisualContact;
@@ -18,15 +19,15 @@ import java.util.List;
 public class Controller {
 
     @FXML
-    TableView<Contact> contactTable;
+    TableView<VisualContact> contactTable;
     @FXML
-    TableColumn<Contact, String> tableLastNameColumn;
+    TableColumn<VisualContact, String> tableLastNameColumn;
     @FXML
-    TableColumn<Contact, String> tableFirstNameColumn;
+    TableColumn<VisualContact, String> tableFirstNameColumn;
     @FXML
-    TableColumn<Contact, String> tableLocationColumn;
+    TableColumn<VisualContact, String> tableLocationColumn;
     @FXML
-    TableColumn<Contact, String> tablePhoneColumn;
+    TableColumn<VisualContact, String> tablePhoneColumn;
     @FXML
     TextField lNameTextField;
     @FXML
@@ -45,21 +46,56 @@ public class Controller {
     public Controller(){}
 
     public void init(){
-        lNameTextField.textProperty().addListener((observable, oldValue, newValue) -> updateTable());
+
+        tableLastNameColumn.setCellValueFactory(
+                new PropertyValueFactory<VisualContact,String>("lastName"));
+
+        tableFirstNameColumn.setCellValueFactory(
+                new PropertyValueFactory<VisualContact,String>("firstName"));
+
+        tableLocationColumn.setCellValueFactory(
+                new PropertyValueFactory<VisualContact,String>("location"));
+
+        tablePhoneColumn.setCellValueFactory(
+                new PropertyValueFactory<VisualContact,String>("cellPhoneNumber"));
+
+        lNameTextField.textProperty().addListener((observable, oldValue, newValue) ->
+                updateTable(newValue,
+                            fNameTextField.getText(),
+                            locationTextField.getText(),
+                            phoneTextField.getText()));
+
+        fNameTextField.textProperty().addListener((observable, oldValue, newValue) ->
+                updateTable(lNameTextField.getText(),
+                            newValue,
+                            locationTextField.getText(),
+                            phoneTextField.getText()));
+
+        locationTextField.textProperty().addListener((observable, oldValue, newValue) ->
+                updateTable(lNameTextField.getText(),
+                            fNameTextField.getText(),
+                            newValue,
+                            phoneTextField.getText()));
+
+        phoneTextField.textProperty().addListener((observable, oldValue, newValue) ->
+                updateTable(lNameTextField.getText(),
+                            fNameTextField.getText(),
+                            locationTextField.getText(),
+                            newValue));
+
+        //Testobjects to be removed before finalization
+        adressBook.addContact(new Contact("Bengt", "Bengtsson", "göteborg", "12345678"));
+        adressBook.addContact(new Contact("Sven","Bengtsson", "göteborg", "432423234"));
     }
 
     /*
     under construction
     updates tables with list objects returned from adressbook search function.
      */
-    private void updateTable(){
-        //tempList = adressBook.searchContacts();
-        ObservableList<Contact> observableTempList = FXCollections.observableList(tempList);
-        for (Contact c : observableTempList) {
-
-
-
-        }
+    private void updateTable(String lastName, String firstName, String location, String phoneNumber){
+        tempList = adressBook.searchContacts(lastName, firstName, location, phoneNumber);
+        ObservableList<VisualContact> observableTempList = FXCollections.observableList(tempList);
+        contactTable.setItems(observableTempList);
     }
 
 
