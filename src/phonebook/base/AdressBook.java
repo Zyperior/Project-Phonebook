@@ -97,30 +97,42 @@ public class AdressBook {
 	}
 
 	 /*
-	  * Verifies that an Contact object is not equal to null and that the fields are of correct type
-	  * This method assumes that Contact fields use the following types firstName:String, lastName:String, phoneNumber:int.
-	  * the method throws an exception if any Contact is null or any of the fields are of invalid types 
-	  * returns true if there isn't any exceptions
-	  * is currently commented out to not cause compile error. 
+	  * Verifies that an Contact object and fields is not equal to null and that the fields are of correct type
+	  * the method throws an exception if any Contact or fields is null or any of the fields are of invalid types 
+	  * returns true if there isn't any exceptions 
 	  */
-	 private boolean verifyContactObject(Contact contact) {
-//		 Number n;
-//		 if (contact == null) {
-//			 throw new NullPointerException("ERROR! Contact can not null!");
-//			 return false;
-//		 }if (contact.getPhoneNumber != null) {
-//			 n = contact.getPhoneNumber();
-//		 }
-//		 if(!contact.getFirstName().getClass().equals(String.class)){
-//			 throw new Exception("ERROR! firstName must be a String");
-//		 }else if(!contact.getLastName().getClass().equals(String.class)){
-//			 throw new Exception("ERROR! lastName must be a String");
-//		 }else if (!Integer.class.equals(contact.getPhoneNumber().getClass())) {
-//			 throw new Exception("ERROR! phoneNumber must be of type int");
-//		 }else {
-			 return true;
-		 }
-//	 }
+	private boolean verifyContactObject(Contact contact) {
+		
+		if (contact == null) {
+			throw new NullPointerException("ERROR! Contact can not null!");
+		}
+		
+		if (contact.getFirstName()==null) {
+			throw new NullPointerException("ERROR! firstName can not be null!");
+		}else if(!contact.getFirstName().getClass().equals(String.class)){
+			throw new IllegalArgumentException("ERROR! firstName must be a String");
+		}
+		
+		if (contact.getLastName()==null) {
+			throw new NullPointerException("ERROR! lastName can not be null!");
+		}else if(!contact.getLastName().getClass().equals(String.class)){
+			throw new IllegalArgumentException("ERROR! lastName must be a String");
+		}
+		
+		if (contact.getCellPhoneNumber()==null) {
+			throw new NullPointerException("ERROR! cellPhoneNumber can not be null!");
+		}else if (!contact.getCellPhoneNumber().getClass().equals(String.class)) {
+			throw new IllegalArgumentException("ERROR! cellPhoneNumber must be of type String");
+		}
+		
+		if (contact.getLocation()==null) {
+			throw new NullPointerException("ERROR! location can not be null!");
+		}else if (!contact.getLocation().getClass().equals(String.class)) {
+			throw new IllegalArgumentException("ERROR! location must be of type String");
+		}else {
+			return true;
+		}
+	}
 	
 	public ArrayList<Contact> getContacts() {
 		return contacts;
