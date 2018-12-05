@@ -1,8 +1,20 @@
+/*
+Date yy-mm-dd: 18-12-05
+Author: Andreas Albihn
+ */
 package phonebook.gui;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import phonebook.base.AdressBook;
 import phonebook.base.Contact;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Controller {
@@ -28,7 +40,31 @@ public class Controller {
     @FXML
     Button addContactButton;
 
+    AdressBook adressBook = new AdressBook();
+
+    List<Contact> tempList;
+
     public Controller(){}
 
-    
+    public void init(){
+        lNameTextField.textProperty().addListener((observable, oldValue, newValue) -> updateTable());
+    }
+
+    /*
+    under construction
+    updates tables with list objects returned from adressbook search function.
+     */
+    private void updateTable(){
+        tempList = adressBook.searchContacts();
+        ObservableList<Contact> observableTempList = FXCollections.observableList(tempList);
+        for (Contact c : observableTempList) {
+
+
+
+        }
+    }
+
+
+
+
 }
