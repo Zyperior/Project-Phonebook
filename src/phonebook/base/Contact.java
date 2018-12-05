@@ -90,8 +90,7 @@ public class Contact {
 	@Override
 	// placeholder syntax feel free to request functionality
 	public String toString() {
-		return String.format("Firstname %s \nLastname %s \nLocation %s \nCellnumber %s", firstName, lastName, location,
-				cellPhoneNumber);
+		return String.format("%s,%s,%s,%s", firstName, lastName, location, cellPhoneNumber);
 	}
 
 }
