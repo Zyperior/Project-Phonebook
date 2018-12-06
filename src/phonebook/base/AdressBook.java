@@ -54,39 +54,57 @@ public class AdressBook {
 	//(in progress)
 	//searches for Contact/contacts using phoneNumber, firstName, LastName, location.
 	//returns an arraylist containing all contacts matching the search terms
-	public ArrayList<VisualContact> searchContacts(String lastName, String firstName, String location, String phonenumber) {
-		
-		ArrayList<String> searchTerms = new ArrayList<>();
-
-		if (lastName.length() > 0 && lastName != null) 
-			searchTerms.add(lastName);
-		if (firstName.length() > 0 && firstName != null) 
-			searchTerms.add(firstName);
-		if (location.length() > 0 && location != null) 
-			searchTerms.add(location);
-		if (phonenumber.length() > 0 && phonenumber != null) 
-			searchTerms.add(phonenumber);
-		
-		ArrayList<VisualContact> searchResult = new ArrayList<>();
-		
-		for (Contact c : this.contacts) {
-			int matches = 0;
-			
-			for (String s : searchTerms) {
-				System.out.println(searchTerms.size());
-				s=s.toLowerCase();
-				if (c.toString().toLowerCase().contains(s)) {
-					System.out.println(s + " exists");
-					matches++;
-					}
-					System.out.println("Matches: " + matches);
-				if (matches == searchTerms.size()) {
-					searchResult.add(new VisualContact(c));
-				}
-			}
-		}
-		return searchResult;
-	}	
+//	public ArrayList<VisualContact> searchContacts(String lastName, String firstName, String location, String phonenumber) {
+//		
+//		String[] searchTerms = {firstName, lastName, location, phonenumber};
+//
+//		ArrayList<Integer> fieldVar = new ArrayList<>();
+//		
+////		if (firstName.length() > 0 && firstName != null) { 
+////			searchTerms.add(firstName);
+////			fieldVar.add(0);
+////			
+////		if (lastName.length() > 0 && lastName != null) { 
+////			searchTerms.add(lastName);
+////			fieldVar.add(1);
+////		}
+////	}
+////		if (location.length() > 0 && location != null) {
+////			searchTerms.add(location);
+////			fieldVar.add(2);
+////		}
+////		if (phonenumber.length() > 0 && phonenumber != null) { 
+////			searchTerms.add(phonenumber);
+////			fieldVar.add(3);
+////		}
+//		
+//		ArrayList<VisualContact> searchResult = new ArrayList<>();
+//		
+//		for (Contact c : this.contacts) {
+//			int matches = 0;
+//			
+//			for (int i = 0; i < searchTerms.length; i++) {
+//				String[] fields = c.toString().split(",");
+//				if (searchTerms[i] == null) {
+//					System.out.println("asdf+8745");
+//				}
+//				if (searchTerms[i].length() < 1 || searchTerms[i] == null) {
+//					matches++;
+//					continue;
+//				}else {
+//					searchTerms[i]=searchTerms[i].toLowerCase();
+//				if (c.toString().toLowerCase().contains(searchTerms[i])) {
+//					System.out.println(searchTerms[i] + " exists");
+//					matches++;
+//					}
+//					System.out.println("Matches: " + matches);
+//				if (matches == searchTerms.length) {
+//					searchResult.add(new VisualContact(c));
+//				}}
+//			}
+//		}
+//		return searchResult;
+//	}	
 	
 	//(in progress)
 	//selects a Contact object from search result
