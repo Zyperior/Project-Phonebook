@@ -86,6 +86,10 @@ public class Controller {
         //Testobjects to be removed before finalization
         adressBook.addContact(new Contact("Bengt", "Bengtsson", "göteborg", "12345678"));
         adressBook.addContact(new Contact("Sven","Bengtsson", "göteborg", "432423234"));
+        adressBook.addContact(new Contact("Anna","Andersson", "Karlstad", "88787878"));
+
+        updateTable("","","","");
+
     }
 
     /*
@@ -93,7 +97,7 @@ public class Controller {
     updates tables with list objects returned from adressbook search function.
      */
     private void updateTable(String lastName, String firstName, String location, String phoneNumber){
-        tempList = adressBook.searchContacts(lastName, firstName, location, phoneNumber);
+        tempList = adressBook.optSearchContacts(lastName, firstName, location, phoneNumber);
         ObservableList<VisualContact> observableTempList = FXCollections.observableList(tempList);
         contactTable.setItems(observableTempList);
     }
