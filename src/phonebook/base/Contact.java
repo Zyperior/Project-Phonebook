@@ -54,6 +54,24 @@ public class Contact {
 		return cellPhoneNumber;
 	}
 
+	public String getContactValueByIndex(int index) {
+
+		switch(index){
+			case 0:
+				return lastName;
+
+			case 1:
+				return firstName;
+
+			case 2:
+				return location;
+
+			case 3:
+				return cellPhoneNumber;
+		}
+		 return null;
+	}
+
 
 
 	@Override
