@@ -22,23 +22,3 @@ public class Sort {
 	}
 
 }
-
-class SortByFirstNameComparator implements Comparator<Contact> {
-
-	@Override
-	public int compare(Contact contact1, Contact contact2) {
-
-		return contact1.getFirstName().compareTo(contact2.getFirstName());
-	}
-
-}
-
-class SortByLastNameComparator implements Comparator<Contact> {
-
-	@Override
-	public int compare(Contact contact1, Contact contact2) {
-
-		return contact1.getLastName().compareTo(contact2.getLastName());
-	}
-
-}
