@@ -17,28 +17,8 @@ import java.util.Comparator;
 public class Sort {
 
 	public static ArrayList<Contact> sort(ArrayList<Contact> arr) {
-		Collections.sort(arr, new SortByFirstNameComparator().thenComparing(new SortByLastNameComparator()));
+		Collections.sort(arr, new SortByFirstNameComparator().thenComparing(new SortByLastNameComparator().thenComparing(new SortByLocationComparator())));
 		return arr;
-	}
-
-}
-
-class SortByFirstNameComparator implements Comparator<Contact> {
-
-	@Override
-	public int compare(Contact contact1, Contact contact2) {
-
-		return contact1.getFirstName().compareTo(contact2.getFirstName());
-	}
-
-}
-
-class SortByLastNameComparator implements Comparator<Contact> {
-
-	@Override
-	public int compare(Contact contact1, Contact contact2) {
-
-		return contact1.getLastName().compareTo(contact2.getLastName());
 	}
 
 }

@@ -1,5 +1,5 @@
 /* Date dd-mm-yyyy: 12-03-2018
- * Author: Gustav Ljungberg
+ * Author: Gustav Ljungberg, Andreas Albihn
 */
 
 package phonebook.base;
@@ -140,23 +140,21 @@ public class AdressBook {
 		return searchResult;
 	}
 
-	//optional search function (by Andreas Albihn)
-    public ArrayList<VisualContact> optSearchContacts(String lastName, String firstName, String location, String phonenumber){
+	//Alternative search function (by Andreas Albihn)
+	//TODO: If final, refactor name
+    public ArrayList<VisualContact> optSearchContacts(String lastName, String firstName, String location, String phoneNumber){
 
-	    //Create array of Strings and add searchStrings
-        String[] searchTerms = new String[4];
-        searchTerms[0] = lastName;
-        searchTerms[1] = firstName;
-        searchTerms[2] = location;
-        searchTerms[3] = phonenumber;
+        String[] searchValues = new String[4];
+        searchValues[0] = lastName;
+        searchValues[1] = firstName;
+        searchValues[2] = location;
+        searchValues[3] = phoneNumber;
 
         //Create resultlist through recursive method (see below)
-        ArrayList<Contact> searchResult = iterateSearchResults(contacts, searchTerms, 0);
+        ArrayList<Contact> searchResult = iterateSearchResults(contacts, searchValues, 0);
 
-        //Create list with visualContacts to convert searchresult to.
         ArrayList<VisualContact> convertedResultList = new ArrayList<>();
 
-        //Convert the results
         for (Contact c : searchResult) {
             convertedResultList.add(new VisualContact(c));
         }
@@ -165,50 +163,46 @@ public class AdressBook {
 
     }
 
-    //Recursive method to go through each searchterm and minimize results for each recursion.
+    //Recursive method to go through each search-value and minimize results for each recursion. (by Andreas Albihn)
     private ArrayList<Contact> iterateSearchResults(ArrayList<Contact> contactList, String[] searchValues, int index){
 
-	    //Set current search value
         String searchValue = searchValues[index].toLowerCase();
 
         //If search value is empty, skip comparison
         if(!searchValue.equals("")){
 
-            //Create resultlist for current comparison
             ArrayList<Contact> results = new ArrayList<>();
 
-            //Iterate through current list and add matching results to list
             for (Contact c : contactList) {
-                String compValue = c.getContactValueByIndex(index).toLowerCase().substring(0, searchValue.length());
+
+            	int limit = searchValue.length();
+            	if(limit>c.getContactValueByIndex(index).length())
+            		limit = c.getContactValueByIndex(index).length();
+
+                String compValue = c.getContactValueByIndex(index).toLowerCase().substring(0, limit);
+
 
                 if(compValue.equals(searchValue))
                     results.add(c);
 
             }
 
-            //Go to next search-value and compare-value on the list
             index++;
 
-            //If index is 4 all search values and compare values have been compared, return the results
             if(index>3)
                 return results;
 
-            //Else iterate through new result-list on the next index value
             return iterateSearchResults(results, searchValues, index);
 
         }
 
         //If current search-value was skipped..
-        //Go to next search-value and compare-value on the list
         index++;
 
-        //If index is 4 all search values and compare values have been compared, return the results
         if(index>3)
             return contactList;
 
-        //Iterate through the current list again, with next value for comparison.
         return iterateSearchResults(contactList, searchValues, index);
-
 
     }
 
