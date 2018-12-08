@@ -2,7 +2,7 @@ package phonebook.base;
 
 import java.util.Comparator;
 
-class SortByLastNameComparator implements Comparator<Contact> {
+public class SortByLastNameComparator implements Comparator<Contact> {
 
 	@Override
 	public int compare(Contact contact1, Contact contact2) {
