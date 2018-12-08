@@ -17,7 +17,7 @@ import java.util.Comparator;
 public class Sort {
 
 	public static ArrayList<Contact> sort(ArrayList<Contact> arr) {
-		Collections.sort(arr, new SortByFirstNameComparator().thenComparing(new SortByLastNameComparator()));
+		Collections.sort(arr, new SortByFirstNameComparator().thenComparing(new SortByLastNameComparator().thenComparing(new SortByLocationComparator())));
 		return arr;
 	}
 
