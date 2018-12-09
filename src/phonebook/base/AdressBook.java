@@ -49,7 +49,7 @@ public class AdressBook {
 		}
 	}
 	
-	//This method removes selected contact from contacts arraylist
+	//removes selected contact from contacts arraylist
 	public void removeContact(Contact contact) {
 		contacts.remove(getIndexOf(contact));
 	}
