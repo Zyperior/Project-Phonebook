@@ -9,11 +9,10 @@ import java.util.ArrayList;
 
 public class AdressBook {
 
-	/*
-	 * contacts field is a list that contains Contact objects.
-	 * adding it as an Arraylist for now
-	 */
-	ArrayList<Contact> contacts;
+	
+
+	String userName;
+	ArrayList<Contact> contacts; // Stores all contacts
 	
 	/*
 	 * Constructor taking an arrayList<Contact> as argument
@@ -27,6 +26,11 @@ public class AdressBook {
 			this.contacts = new ArrayList<>();
 		}
 	}	
+	
+	public AdressBook(ArrayList<Contact> contacts, String userName) {
+		this(contacts);
+		this.userName = userName;
+	}
 	/*
 	 * no args constructor
 	 * initializes contacts list
