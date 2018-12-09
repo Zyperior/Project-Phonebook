@@ -106,39 +106,7 @@ public class AdressBook {
 //		return searchResult;
 //	}	
 
-	public ArrayList<VisualContact> searchContacts(String lastName, String firstName, String location, String phonenumber) {
-		
-		ArrayList<String> searchTerms = new ArrayList<>();
 
-		if (lastName.length() > 0 && lastName != null) 
-			searchTerms.add(lastName);
-		if (firstName.length() > 0 && firstName != null) 
-			searchTerms.add(firstName);
-		if (location.length() > 0 && location != null) 
-			searchTerms.add(location);
-		if (phonenumber.length() > 0 && phonenumber != null) 
-			searchTerms.add(phonenumber);
-		
-		ArrayList<VisualContact> searchResult = new ArrayList<>();
-		
-		for (Contact c : this.contacts) {
-			int matches = 0;
-			
-			for (String s : searchTerms) {
-				System.out.println(searchTerms.size());
-				s=s.toLowerCase();
-				if (c.toString().toLowerCase().contains(s)) {
-					System.out.println(s + " exists");
-					matches++;
-					}
-					System.out.println("Matches: " + matches);
-				if (matches == searchTerms.size()) {
-					searchResult.add(new VisualContact(c));
-				}
-			}
-		}
-		return searchResult;
-	}
 
 	//Alternative search function (by Andreas Albihn)
 	//TODO: If final, refactor name
@@ -207,9 +175,14 @@ public class AdressBook {
     }
 
 	
-	//(in progress)
-	//selects a Contact object from search result
-	public Contact selectContact() {
+	//checks if an Contact is in the contacts arraylist by comparing all Contact in contacts hashcode.
+    //will return the contact that match the hashcode.
+    //returns null if no contact match
+	public Contact selectContact(Contact selectedContact) {
+		for (Contact c : contacts) {
+			if (c.hashCode() == selectedContact.hashCode()) return c;
+		}
+		System.err.println("selectedContact not ín contacts list!");
 		return null;
 	}
 	
