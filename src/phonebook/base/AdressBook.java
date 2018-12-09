@@ -56,7 +56,7 @@ public class AdressBook {
 	
 	//Takes Contact as parameter. returns the index of the contact in the contacts arraylist
 	//returns null if the contact doesn't exist 
-	public Integer getIndexOf(Contact contact) {
+	private Integer getIndexOf(Contact contact) {
 		for (int i = 0; i < this.contacts.size(); i++) {
 			if (this.contacts.get(i).hashCode() == contact.hashCode()) {
 				return i;
@@ -273,6 +273,10 @@ public class AdressBook {
 	
 	public ArrayList<Contact> getContacts() {
 		return contacts;
+	}
+
+	public String getUserName() {
+		return userName;
 	}	
 	
 }
