@@ -49,17 +49,27 @@ public class AdressBook {
 		}
 	}
 	
-	//(in progress)
 	//This method removes selected contact from contacts arraylist
-	public void removeContact() {
-		
+	public void removeContact(Contact contact) {
+		contacts.remove(getIndexOf(contact));
 	}
 	
-	//(in progress)
+	//Takes Contact as parameter. returns the index of the contact in the contacts arraylist
+	//returns null if the contact doesn't exist 
+	public Integer getIndexOf(Contact contact) {
+		for (int i = 0; i < this.contacts.size(); i++) {
+			if (this.contacts.get(i).hashCode() == contact.hashCode()) {
+				return i;
+			}
+		}
+		return null;
+	}
+	
+	//OUTDATED
 	//searches for Contact/contacts using phoneNumber, firstName, LastName, location.
 	//returns an arraylist containing all contacts matching the search terms
 //	public ArrayList<VisualContact> searchContactsPrevious(String lastName, String firstName, String location, String phonenumber) {
-//		
+//	  
 //		String[] searchTerms = {firstName, lastName, location, phonenumber};
 //
 //		ArrayList<Integer> fieldVar = new ArrayList<>();
@@ -183,6 +193,8 @@ public class AdressBook {
     //will return the contact that match the hashcode.
     //returns null if no contact match
 	public Contact selectContact(Contact selectedContact) {
+		if (selectedContact == null)
+			throw new NullPointerException("Parameter selectedContact can't be null");
 		for (Contact c : contacts) {
 			if (c.hashCode() == selectedContact.hashCode()) return c;
 		}
