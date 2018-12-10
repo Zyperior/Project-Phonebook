@@ -1,7 +1,15 @@
+/*
+Date yy-mm-dd: 18-12-06
+Author: Andreas Albihn
+ */
+
 package phonebook.base;
 
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Visual class for contacts used in GUI.
+ */
 public class VisualContact {
 
     private SimpleStringProperty firstName;
