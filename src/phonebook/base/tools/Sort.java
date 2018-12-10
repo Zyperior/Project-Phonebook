@@ -8,7 +8,7 @@ Two step sort
  How to use? your_arrayList = Sort.sort(your_arrayList);
  *
  */
-package phonebook.base;
+package phonebook.base.tools;
 
 import java.util.ArrayList;
 import java.util.Collections;
