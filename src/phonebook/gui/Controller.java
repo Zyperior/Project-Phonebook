@@ -4,15 +4,22 @@ Author: Andreas Albihn
  */
 package phonebook.gui;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.When;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableListBase;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import phonebook.base.AdressBook;
 import phonebook.base.Contact;
+import phonebook.base.ContactFactory;
 import phonebook.base.VisualContact;
-
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -39,11 +46,18 @@ public class Controller {
     @FXML
     Button addContactButton;
 
-    AdressBook adressBook = new AdressBook();
+    private AdressBook adressBook;
 
-    List<VisualContact> tempList;
+    private List<VisualContact> tempList;
 
-    public Controller(){}
+    private ObservableList<VisualContact> observableTempList;
+
+    private BooleanProperty validContact;
+
+    public Controller(){
+        adressBook = new AdressBook();
+        validContact = new SimpleBooleanProperty();
+    }
 
     public void init(){
 
@@ -93,16 +107,45 @@ public class Controller {
     }
 
     /*
-    under construction
     updates tables with list objects returned from adressbook search function.
+    If list is empty and all textfields contains any text set addContactButton enabled.
      */
     private void updateTable(String lastName, String firstName, String location, String phoneNumber){
-        tempList = adressBook.optSearchContacts(lastName, firstName, location, phoneNumber);
-        ObservableList<VisualContact> observableTempList = FXCollections.observableList(tempList);
+        tempList = adressBook.search(lastName, firstName, location, phoneNumber);
+
+        List<TextField> textFields = new ArrayList<>();
+        textFields.add(lNameTextField);
+        textFields.add(fNameTextField);
+        textFields.add(locationTextField);
+        textFields.add(phoneTextField);
+
+        addContactButton.setDisable(!tempList.isEmpty());
+
+        for (TextField tf : textFields) {
+            if(tf.getText().trim().isEmpty()){
+                addContactButton.setDisable(true);
+                break;
+            }
+        }
+
+        observableTempList = FXCollections.observableList(tempList);
         contactTable.setItems(observableTempList);
     }
 
 
+    @FXML
+    private void addContactClick(ActionEvent actionEvent){
+        String lastName = lNameTextField.getText();
+        String firstName = fNameTextField.getText();
+        String location = locationTextField.getText();
+        String phoneNumber = phoneTextField.getText();
 
+        adressBook.addContact(ContactFactory.createContact(firstName,lastName,location,phoneNumber));
+
+        lNameTextField.setText("");
+        fNameTextField.setText("");
+        locationTextField.setText("");
+        phoneTextField.setText("");
+    }
 
 }
