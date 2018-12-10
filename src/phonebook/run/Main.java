@@ -1,3 +1,8 @@
+/*
+Date yy-mm-dd: 18-12-06
+Author: Andreas Albihn
+ */
+
 package phonebook.run;
 
 import javafx.application.Application;
@@ -7,7 +12,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import phonebook.gui.Controller;
 
+import java.io.IOException;
+
 public class Main extends Application {
+
+    private Parent root;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -15,7 +24,7 @@ public class Main extends Application {
         Controller controller;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/GUI.fxml"));
-        Parent root = loader.load();
+        root = loader.load();
 
         controller = loader.getController();
         controller.init();
@@ -30,5 +39,11 @@ public class Main extends Application {
 
         launch(args);
 
+    }
+
+    public Parent getRoot() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/GUI.fxml"));
+        root = loader.load();
+        return root;
     }
 }
