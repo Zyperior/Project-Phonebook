@@ -1,4 +1,4 @@
-package phonebook.base;
+package phonebook.base.tools;
 
 import java.util.Comparator;
 
