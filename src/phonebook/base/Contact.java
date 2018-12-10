@@ -4,7 +4,9 @@ Robin Säfström ITHS 2018
 
 package phonebook.base;
 
-public class Contact {
+public class Contact implements java.io.Serializable {
+
+	private static final long serialVersionUID = -3360942794070127179L;
 	private String firstName;
 	private String lastName;
 	private String location;
@@ -27,7 +29,8 @@ public class Contact {
 			throw new IllegalArgumentException("Input out of range!");
 		}
 
-		// we dodged all exceptions! hurrray!
+		// format data and store it
+		// makes text fields lower case and capitalizing the first letter
 		firstName = firstName.toLowerCase();
 		lastName = lastName.toLowerCase();
 		location = location.toLowerCase();
@@ -54,27 +57,24 @@ public class Contact {
 		return cellPhoneNumber;
 	}
 
+	// custom getter used by search method
 	public String getContactValueByIndex(int index) {
 
-		switch(index){
-			case 0:
-				return lastName;
+		switch (index) {
+		case 0:
+			return lastName;
 
-			case 1:
-				return firstName;
+		case 1:
+			return firstName;
 
-			case 2:
-				return location;
+		case 2:
+			return location;
 
-			case 3:
-				return cellPhoneNumber;
+		case 3:
+			return cellPhoneNumber;
 		}
-		 return null;
+		return null;
 	}
-
-
-
-
 
 	@Override
 	public int hashCode() {
