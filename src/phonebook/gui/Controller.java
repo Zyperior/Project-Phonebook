@@ -45,22 +45,23 @@ public class Controller {
     TextField phoneTextField;
     @FXML
     Button addContactButton;
+    @FXML
+    ComboBox<String> categoryComboBox;
 
-    private AdressBook adressBook;
+    private AdressBook adressBook = new AdressBook();
 
     private List<VisualContact> tempList;
 
+    private List<String> categoryList = new ArrayList<>();
+
     private ObservableList<VisualContact> observableTempList;
 
-    private BooleanProperty validContact;
-
     public Controller(){
-        adressBook = new AdressBook();
-        validContact = new SimpleBooleanProperty();
     }
 
     public void init(){
-
+        //Contact table settings:
+        //--------------------------------------------------------
         tableLastNameColumn.setCellValueFactory(
                 new PropertyValueFactory<VisualContact,String>("lastName"));
 
@@ -72,7 +73,10 @@ public class Controller {
 
         tablePhoneColumn.setCellValueFactory(
                 new PropertyValueFactory<VisualContact,String>("cellPhoneNumber"));
+        //--------------------------------------------------------
 
+        //Textfield settings:
+        //--------------------------------------------------------
         lNameTextField.textProperty().addListener((observable, oldValue, newValue) ->
                 updateTable(newValue,
                             fNameTextField.getText(),
@@ -96,18 +100,36 @@ public class Controller {
                             fNameTextField.getText(),
                             locationTextField.getText(),
                             newValue));
+        //--------------------------------------------------------
+
+
+        //Category combobox settings:
+        //--------------------------------------------------------
+        categoryList.add("Home");
+        categoryList.add("Work");
+        categoryList.add("Other");
+
+        categoryComboBox.setItems(FXCollections.observableList(categoryList));
+
+        categoryComboBox.getSelectionModel().selectFirst();
+
+        categoryComboBox.valueProperty().addListener((observable, oldValue, newValue) ->
+                loadCategory(newValue));
+        //--------------------------------------------------------
+
 
         //Testobjects to be removed before finalization
         adressBook.addContact(new Contact("Bengt", "Bengtsson", "göteborg", "12345678"));
         adressBook.addContact(new Contact("Sven","Bengtsson", "göteborg", "432423234"));
         adressBook.addContact(new Contact("Anna","Andersson", "Karlstad", "88787878"));
 
+        //Initial update for the table
         updateTable("","","","");
 
     }
 
     /*
-    updates tables with list objects returned from adressbook search function.
+    Updates tables with list objects returned from adressbook search function.
     If list is empty and all textfields contains any text set addContactButton enabled.
      */
     private void updateTable(String lastName, String firstName, String location, String phoneNumber){
@@ -132,7 +154,10 @@ public class Controller {
         contactTable.setItems(observableTempList);
     }
 
-
+    /*
+    Adds contact to current list with current values.
+    Resets values to "" if successful.
+     */
     @FXML
     private void addContactClick(ActionEvent actionEvent){
         String lastName = lNameTextField.getText();
@@ -146,6 +171,13 @@ public class Controller {
         fNameTextField.setText("");
         locationTextField.setText("");
         phoneTextField.setText("");
+    }
+
+    /*
+    Sends string value to filehandler-loadmethod to retrieve specified contact list.
+     */
+    private void loadCategory(String category){
+        System.out.println(category);
     }
 
 }
