@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class SearchAdressBook {
 
-    public static ArrayList<VisualContact> searchContacts(AdressBook adressBook, String lastName, String firstName, String location, String phoneNumber){
+    public static ArrayList<VisualContact> searchContacts(ArrayList<Contact> contacts, String lastName, String firstName, String location, String phoneNumber){
 
         String[] searchValues = new String[4];
         searchValues[0] = lastName;
@@ -21,7 +21,7 @@ public class SearchAdressBook {
         searchValues[3] = phoneNumber;
 
         //Create resultlist through recursive method (see below)
-        ArrayList<Contact> searchResult = iterateSearchResults(adressBook.getContacts(), searchValues, 0);
+        ArrayList<Contact> searchResult = iterateSearchResults(contacts, searchValues, 0);
 
         ArrayList<VisualContact> convertedResultList = new ArrayList<>();
 
