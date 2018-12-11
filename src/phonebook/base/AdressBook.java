@@ -27,8 +27,7 @@ public class AdressBook {
 		}
 	}	
 	
-	public AdressBook(ArrayList<Contact> contacts, String userName) {
-		this(contacts);
+	public AdressBook(String userName) {
 		this.userName = userName;
 	}
 	/*
@@ -51,7 +50,7 @@ public class AdressBook {
 	
 	//removes selected contact from contacts arraylist
 	public void removeContact(Contact contact) {
-		contacts.remove(getIndexOf(contact));
+		contacts.remove(contact);
 	}
 	
 	//Takes Contact as parameter. returns the index of the contact in the contacts arraylist
