@@ -15,7 +15,7 @@ public class VisualContact {
     private SimpleStringProperty firstName;
     private SimpleStringProperty lastName;
     private SimpleStringProperty location;
-    private SimpleStringProperty cellPhoneNumber;
+    private SimpleStringProperty phoneNumber;
 
     /**
      *
@@ -25,7 +25,7 @@ public class VisualContact {
         this.firstName = new SimpleStringProperty(c.getFirstName());
         this.lastName = new SimpleStringProperty(c.getLastName());
         this.location = new SimpleStringProperty(c.getLocation());
-        this.cellPhoneNumber = new SimpleStringProperty(c.getCellPhoneNumber());
+        this.phoneNumber = new SimpleStringProperty(c.getPhoneNumber());
     }
 
     public String getFirstName() {
@@ -41,7 +41,7 @@ public class VisualContact {
     }
 
     public String getCellPhoneNumber() {
-        return cellPhoneNumber.get();
+        return phoneNumber.get();
     }
 
 }
