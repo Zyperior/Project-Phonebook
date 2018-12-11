@@ -192,7 +192,7 @@ public class Controller {
                 selectedContact.getLastName(),
                 selectedContact.getFirstName(),
                 selectedContact.getLocation(),
-                selectedContact.getCellPhoneNumber());
+                selectedContact.getPhoneNumber());
 
         adressBook.removeContact(contactToRemove);
 
