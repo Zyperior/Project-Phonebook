@@ -256,10 +256,10 @@ public class AdressBook {
 			throw new IllegalArgumentException("ERROR! lastName must be a String");
 		}
 		
-		if (contact.getCellPhoneNumber()==null) {
-			throw new NullPointerException("ERROR! cellPhoneNumber can not be null!");
-		}else if (!contact.getCellPhoneNumber().getClass().equals(String.class)) {
-			throw new IllegalArgumentException("ERROR! cellPhoneNumber must be of type String");
+		if (contact.getPhoneNumber()==null) {
+			throw new NullPointerException("ERROR! phoneNumber can not be null!");
+		}else if (!contact.getPhoneNumber().getClass().equals(String.class)) {
+			throw new IllegalArgumentException("ERROR! phoneNumber must be of type String");
 		}
 		
 		if (contact.getLocation()==null) {
