@@ -3,8 +3,6 @@
  */
 
 package phonebook.base.tools;
-
-import phonebook.base.AdressBook;
 import phonebook.base.Contact;
 import phonebook.base.VisualContact;
 
@@ -12,16 +10,20 @@ import java.util.ArrayList;
 
 public class SearchAdressBook {
 
+    private static final int LIMIT_SEARCH_INDEX = 4;
+    private static final int START_SEARCH_INDEX = 0;
+    private static final String EMPTY_SEARCH_VALUE = "";
+
     public static ArrayList<VisualContact> searchContacts(ArrayList<Contact> contacts, String lastName, String firstName, String location, String phoneNumber){
 
-        String[] searchValues = new String[4];
+        String[] searchValues = new String[LIMIT_SEARCH_INDEX];
         searchValues[0] = lastName;
         searchValues[1] = firstName;
         searchValues[2] = location;
         searchValues[3] = phoneNumber;
 
         //Create resultlist through recursive method (see below)
-        ArrayList<Contact> searchResult = iterateSearchResults(contacts, searchValues, 0);
+        ArrayList<Contact> searchResult = iterateSearchResults(contacts, searchValues, START_SEARCH_INDEX);
 
         ArrayList<VisualContact> convertedResultList = new ArrayList<>();
 
@@ -39,7 +41,7 @@ public class SearchAdressBook {
         String searchValue = searchValues[index].toLowerCase();
 
         //If search value is empty, skip comparison
-        if(!searchValue.equals("")){
+        if(!searchValue.equals(EMPTY_SEARCH_VALUE)){
 
             ArrayList<Contact> results = new ArrayList<>();
 
@@ -59,7 +61,7 @@ public class SearchAdressBook {
 
             index++;
 
-            if(index>3)
+            if(index==LIMIT_SEARCH_INDEX)
                 return results;
 
             return iterateSearchResults(results, searchValues, index);
@@ -69,7 +71,7 @@ public class SearchAdressBook {
         //If current search-value was skipped..
         index++;
 
-        if(index>3)
+        if(index==LIMIT_SEARCH_INDEX)
             return contactList;
 
         return iterateSearchResults(contactList, searchValues, index);
