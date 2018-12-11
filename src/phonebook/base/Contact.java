@@ -10,22 +10,22 @@ public class Contact implements java.io.Serializable {
 	private String firstName;
 	private String lastName;
 	private String location;
-	private String cellPhoneNumber;
+	private String phoneNumber;
 
-	public Contact(String lastName, String firstName, String location, String cellPhoneNumber) {
+	public Contact(String lastName, String firstName, String location, String phoneNumber) {
 
 		// nullcheck
-		if (firstName == null || lastName == null || location == null || cellPhoneNumber == null) {
+		if (firstName == null || lastName == null || location == null || phoneNumber == null) {
 			throw new IllegalArgumentException("No nulls allowed!");
 		}
 
 		// empty check
-		if (firstName.isEmpty() || lastName.isEmpty() || location.isEmpty() || cellPhoneNumber.isEmpty()) {
+		if (firstName.isEmpty() || lastName.isEmpty() || location.isEmpty() || phoneNumber.isEmpty()) {
 			throw new IllegalArgumentException("No empty fields allowed!");
 		}
 		// range check
 		if (firstName.length() > 20 || lastName.length() > 20 || location.length() > 20
-				|| cellPhoneNumber.length() > 15) {
+				|| phoneNumber.length() > 15) {
 			throw new IllegalArgumentException("Input out of range!");
 		}
 
@@ -37,7 +37,7 @@ public class Contact implements java.io.Serializable {
 		this.firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1);
 		this.lastName = lastName.substring(0, 1).toUpperCase() + lastName.substring(1);
 		this.location = location.substring(0, 1).toUpperCase() + location.substring(1);
-		this.cellPhoneNumber = cellPhoneNumber;
+		this.phoneNumber = phoneNumber;
 
 	}
 
@@ -53,8 +53,8 @@ public class Contact implements java.io.Serializable {
 		return location;
 	}
 
-	public String getCellPhoneNumber() {
-		return cellPhoneNumber;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
 	// custom getter used by search method
@@ -71,7 +71,7 @@ public class Contact implements java.io.Serializable {
 			return location;
 
 		case 3:
-			return cellPhoneNumber;
+			return phoneNumber;
 		}
 		return null;
 	}
@@ -80,7 +80,7 @@ public class Contact implements java.io.Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cellPhoneNumber == null) ? 0 : cellPhoneNumber.hashCode());
+		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((location == null) ? 0 : location.hashCode());
@@ -99,10 +99,10 @@ public class Contact implements java.io.Serializable {
 			return false;
 
 		Contact other = (Contact) obj;
-		if (cellPhoneNumber == null) {
-			if (other.cellPhoneNumber != null)
+		if (phoneNumber == null) {
+			if (other.phoneNumber != null)
 				return false;
-		} else if (!cellPhoneNumber.equals(other.cellPhoneNumber))
+		} else if (!phoneNumber.equals(other.phoneNumber))
 			return false;
 
 		if (firstName == null) {
@@ -129,7 +129,7 @@ public class Contact implements java.io.Serializable {
 	@Override
 	// placeholder syntax feel free to request functionality
 	public String toString() {
-		return String.format("%s,%s,%s,%s", firstName, lastName, location, cellPhoneNumber);
+		return String.format("%s,%s,%s,%s", firstName, lastName, location, phoneNumber);
 	}
 
 }
