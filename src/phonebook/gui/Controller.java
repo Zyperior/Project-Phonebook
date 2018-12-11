@@ -79,27 +79,27 @@ public class Controller {
         //--------------------------------------------------------
         lNameTextField.textProperty().addListener((observable, oldValue, newValue) ->
                 updateTable(newValue,
-                            fNameTextField.getText(),
-                            locationTextField.getText(),
-                            phoneTextField.getText()));
+                        fNameTextField.getText(),
+                        locationTextField.getText(),
+                        phoneTextField.getText()));
 
         fNameTextField.textProperty().addListener((observable, oldValue, newValue) ->
                 updateTable(lNameTextField.getText(),
-                            newValue,
-                            locationTextField.getText(),
-                            phoneTextField.getText()));
+                        newValue,
+                        locationTextField.getText(),
+                        phoneTextField.getText()));
 
         locationTextField.textProperty().addListener((observable, oldValue, newValue) ->
                 updateTable(lNameTextField.getText(),
-                            fNameTextField.getText(),
-                            newValue,
-                            phoneTextField.getText()));
+                        fNameTextField.getText(),
+                        newValue,
+                        phoneTextField.getText()));
 
         phoneTextField.textProperty().addListener((observable, oldValue, newValue) ->
                 updateTable(lNameTextField.getText(),
-                            fNameTextField.getText(),
-                            locationTextField.getText(),
-                            newValue));
+                        fNameTextField.getText(),
+                        locationTextField.getText(),
+                        newValue));
         //--------------------------------------------------------
 
 
