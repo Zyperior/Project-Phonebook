@@ -4,18 +4,17 @@ Author: Andreas Albihn
  */
 package phonebook.gui;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import phonebook.base.AdressBook;
 import phonebook.base.Contact;
 import phonebook.base.ContactFactory;
 import phonebook.base.VisualContact;
 import phonebook.storage.FileHandler;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,33 +42,37 @@ public class Controller {
     @FXML
     Button addContactButton;
     @FXML
+    Button removeContactButton;
+    @FXML
     ComboBox<String> categoryComboBox;
 
     private AdressBook adressBook = new AdressBook();
 
-    private List<VisualContact> tempList;
-
     private List<String> categoryList = new ArrayList<>();
 
-    private ObservableList<VisualContact> observableTempList;
+    private Stage stage;
 
     public Controller(){
+    }
+
+    public void setStage(Stage stage){
+        this.stage = stage;
     }
 
     public void init(){
         //Contact table settings:
         //--------------------------------------------------------
         tableLastNameColumn.setCellValueFactory(
-                new PropertyValueFactory<VisualContact,String>("lastName"));
+                new PropertyValueFactory<>("lastName"));
 
         tableFirstNameColumn.setCellValueFactory(
-                new PropertyValueFactory<VisualContact,String>("firstName"));
+                new PropertyValueFactory<>("firstName"));
 
         tableLocationColumn.setCellValueFactory(
-                new PropertyValueFactory<VisualContact,String>("location"));
+                new PropertyValueFactory<>("location"));
 
         tablePhoneColumn.setCellValueFactory(
-                new PropertyValueFactory<VisualContact,String>("cellPhoneNumber"));
+                new PropertyValueFactory<>("cellPhoneNumber"));
         //--------------------------------------------------------
 
         //Textfield settings:
@@ -114,10 +117,16 @@ public class Controller {
                 loadCategoryAdressBook(newValue));
         //--------------------------------------------------------
 
-        loadCategoryAdressBook(categoryComboBox.getValue());
+        //Button settings:
+        //--------------------------------------------------------
+        removeContactButton.disableProperty().bind(Bindings.isEmpty(contactTable.getSelectionModel().getSelectedItems()));
+        //--------------------------------------------------------
+
+        stage.setResizable(false);
 
         //Initial update for the table
-        updateTable("","","","");
+        loadCategoryAdressBook(categoryComboBox.getValue());
+        updateTable();
 
     }
 
@@ -126,7 +135,9 @@ public class Controller {
     If list is empty and all textfields contains any text set addContactButton enabled.
      */
     private void updateTable(String lastName, String firstName, String location, String phoneNumber){
-        tempList = adressBook.search(lastName, firstName, location, phoneNumber);
+
+        List<VisualContact> tempList = adressBook.search(lastName, firstName, location, phoneNumber);
+        contactTable.setItems(FXCollections.observableList(tempList));
 
         List<TextField> textFields = new ArrayList<>();
         textFields.add(lNameTextField);
@@ -143,8 +154,13 @@ public class Controller {
             }
         }
 
-        observableTempList = FXCollections.observableList(tempList);
-        contactTable.setItems(observableTempList);
+    }
+
+    /*
+    Updates table with latest version of current adressbook contact list.
+     */
+    private void updateTable(){
+        updateTable("","","","");
     }
 
     /*
@@ -152,7 +168,7 @@ public class Controller {
     Resets values to "" if successful.
      */
     @FXML
-    private void addContactClick(ActionEvent actionEvent){
+    private void addContactClick(){
         String lastName = lNameTextField.getText();
         String firstName = fNameTextField.getText();
         String location = locationTextField.getText();
@@ -168,8 +184,25 @@ public class Controller {
         phoneTextField.setText("");
     }
 
+    @FXML
+    private void removeContactClick(){
+        VisualContact selectedContact = contactTable.getSelectionModel().getSelectedItem();
+
+        Contact contactToRemove = new Contact(
+                selectedContact.getLastName(),
+                selectedContact.getFirstName(),
+                selectedContact.getLocation(),
+                selectedContact.getCellPhoneNumber());
+
+        adressBook.removeContact(contactToRemove);
+
+        FileHandler.saveData(adressBook.getContacts(), categoryComboBox.getValue());
+
+        updateTable();
+    }
+
     /*
-    Sends string value to filehandler-loadmethod to retrieve specified contact list.
+    Fetches specified adressbook by sending category string to adressbook constructor.
      */
     private void loadCategoryAdressBook(String category){
         adressBook = new AdressBook(category);
