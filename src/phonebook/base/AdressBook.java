@@ -6,12 +6,14 @@ package phonebook.base;
 
 import java.util.ArrayList;
 
+import phonebook.storage.StoreHandler;
+
 
 public class AdressBook {
 
 	
-
-	String userName;
+	StoreHandler sh = new StoreHandler();
+	String category;
 	ArrayList<Contact> contacts; // Stores all contacts
 	
 	/*
@@ -27,8 +29,9 @@ public class AdressBook {
 		}
 	}	
 	
-	public AdressBook(String userName) {
-		this.userName = userName;
+	public AdressBook(String category) {
+		this.category = category;
+		sh.loadData(category);
 	}
 	/*
 	 * no args constructor
@@ -275,7 +278,7 @@ public class AdressBook {
 	}
 
 	public String getUserName() {
-		return userName;
+		return category;
 	}	
 	
 }
