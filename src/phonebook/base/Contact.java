@@ -12,20 +12,39 @@ public class Contact implements java.io.Serializable {
 	private String location;
 	private String phoneNumber;
 
+	// parameters for minimum and maximum length of fields
+	// edit these to conform with the the rest of the program
+	// firstname min & max length
+	private final int fnMin = 2;
+	private final int fnMax = 20;
+	// firstname min & max length
+	private final int lnMin = 2;
+	private final int lnMax = 20;
+	// location min & max length
+	private final int lMin = 2;
+	private final int lMax = 20;
+	// location min & max length
+	private final int pMin = 2;
+	private final int pMax = 20;
+
 	public Contact(String lastName, String firstName, String location, String phoneNumber) {
 
 		// nullcheck
 		if (firstName == null || lastName == null || location == null || phoneNumber == null) {
 			throw new IllegalArgumentException("No nulls allowed!");
 		}
-
 		// empty check
 		if (firstName.isEmpty() || lastName.isEmpty() || location.isEmpty() || phoneNumber.isEmpty()) {
 			throw new IllegalArgumentException("No empty fields allowed!");
 		}
-		// range check
-		if (firstName.length() > 20 || lastName.length() > 20 || location.length() > 20
-				|| phoneNumber.length() > 15) {
+		// range check min values
+		if (firstName.length() < fnMin || lastName.length() < lnMin || location.length() < lMin
+				|| phoneNumber.length() < pMin) {
+			throw new IllegalArgumentException("Input out of range!");
+		}
+		// range check max values
+		if (firstName.length() > fnMax || lastName.length() > lnMax || location.length() > lMax
+				|| phoneNumber.length() > pMax) {
 			throw new IllegalArgumentException("Input out of range!");
 		}
 
