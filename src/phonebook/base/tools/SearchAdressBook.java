@@ -12,6 +12,7 @@ public class SearchAdressBook {
 
     private static final int LIMIT_SEARCH_INDEX = 4;
     private static final int START_SEARCH_INDEX = 0;
+    private static final String EMPTY_SEARCH_VALUE = "";
 
     public static ArrayList<VisualContact> searchContacts(ArrayList<Contact> contacts, String lastName, String firstName, String location, String phoneNumber){
 
@@ -40,7 +41,7 @@ public class SearchAdressBook {
         String searchValue = searchValues[index].toLowerCase();
 
         //If search value is empty, skip comparison
-        if(!searchValue.equals("")){
+        if(!searchValue.equals(EMPTY_SEARCH_VALUE)){
 
             ArrayList<Contact> results = new ArrayList<>();
 
