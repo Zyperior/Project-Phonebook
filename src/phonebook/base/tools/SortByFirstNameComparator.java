@@ -1,5 +1,7 @@
 package phonebook.base.tools;
 
+import phonebook.base.Contact;
+
 import java.util.Comparator;
 
 public class SortByFirstNameComparator implements Comparator<Contact> {

@@ -10,6 +10,8 @@ Two step sort
  */
 package phonebook.base.tools;
 
+import phonebook.base.Contact;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
