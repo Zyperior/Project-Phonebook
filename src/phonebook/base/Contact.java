@@ -17,7 +17,7 @@ public class Contact implements java.io.Serializable {
 	// firstname min & max length
 	private final int fnMin = 2;
 	private final int fnMax = 20;
-	// firstname min & max length
+	// lastname min & max length
 	private final int lnMin = 2;
 	private final int lnMax = 20;
 	// location min & max length
