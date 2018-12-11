@@ -32,7 +32,7 @@ public class AdressBook {
 	
 	public AdressBook(String category) {
 		this.category = category;
-		sh.loadData(category);
+		contacts = sh.loadData(category);
 	}
 	/*
 	 * no args constructor
@@ -56,6 +56,17 @@ public class AdressBook {
 	public void removeContact(Contact contact) {
 		contacts.remove(contact);
 	}
+
+	public ArrayList<VisualContact> search(String lastName, String firstName, String location, String phoneNumber){
+		return SearchAdressBook.searchContacts(contacts, lastName, firstName, location, phoneNumber);
+	}
+	
+	public void save() {
+		sh.saveData(contacts, category);
+	}
+	
+	
+	
 	
 	//Takes Contact as parameter. returns the index of the contact in the contacts arraylist
 	//returns null if the contact doesn't exist 
@@ -68,9 +79,8 @@ public class AdressBook {
 		return null;
 	}
 	
-	public ArrayList<VisualContact> search(String lastName, String firstName, String location, String phoneNumber){
-		return SearchAdressBook.searchContacts(contacts, lastName, firstName, location, phoneNumber);
-	}
+	
+	
 	
 	//OUTDATED
 	//searches for Contact/contacts using phoneNumber, firstName, LastName, location.
