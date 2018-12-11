@@ -4,13 +4,8 @@ Author: Andreas Albihn
  */
 package phonebook.gui;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.When;
-import javafx.beans.property.*;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -19,6 +14,8 @@ import phonebook.base.AdressBook;
 import phonebook.base.Contact;
 import phonebook.base.ContactFactory;
 import phonebook.base.VisualContact;
+import phonebook.storage.FileHandler;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,14 +111,10 @@ public class Controller {
         categoryComboBox.getSelectionModel().selectFirst();
 
         categoryComboBox.valueProperty().addListener((observable, oldValue, newValue) ->
-                loadCategory(newValue));
+                loadCategoryAdressBook(newValue));
         //--------------------------------------------------------
 
-
-        //Testobjects to be removed before finalization
-        adressBook.addContact(new Contact("Bengt", "Bengtsson", "göteborg", "12345678"));
-        adressBook.addContact(new Contact("Sven","Bengtsson", "göteborg", "432423234"));
-        adressBook.addContact(new Contact("Anna","Andersson", "Karlstad", "88787878"));
+        loadCategoryAdressBook(categoryComboBox.getValue());
 
         //Initial update for the table
         updateTable("","","","");
@@ -167,6 +160,8 @@ public class Controller {
 
         adressBook.addContact(ContactFactory.createContact(firstName,lastName,location,phoneNumber));
 
+        FileHandler.saveData(adressBook.getContacts(), categoryComboBox.getValue());
+
         lNameTextField.setText("");
         fNameTextField.setText("");
         locationTextField.setText("");
@@ -176,8 +171,8 @@ public class Controller {
     /*
     Sends string value to filehandler-loadmethod to retrieve specified contact list.
      */
-    private void loadCategory(String category){
-        System.out.println(category);
+    private void loadCategoryAdressBook(String category){
+        adressBook = new AdressBook(category);
     }
 
 }
