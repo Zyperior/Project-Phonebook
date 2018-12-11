@@ -32,7 +32,7 @@ public class AdressBook {
 	
 	public AdressBook(String category) {
 		this.category = category;
-		sh.loadData(category);
+		contacts = sh.loadData(category);
 	}
 	/*
 	 * no args constructor
