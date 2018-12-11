@@ -27,6 +27,7 @@ public class Main extends Application {
         root = loader.load();
 
         controller = loader.getController();
+        controller.setStage(primaryStage);
         controller.init();
 
         primaryStage.setTitle("PhoneBook");
