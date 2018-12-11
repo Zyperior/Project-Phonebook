@@ -176,7 +176,7 @@ public class Controller {
 
         adressBook.addContact(ContactFactory.createContact(lastName,firstName,location,phoneNumber));
 
-        FileHandler.saveData(adressBook.getContacts(), categoryComboBox.getValue());
+        adressBook.save();
 
         lNameTextField.setText("");
         fNameTextField.setText("");
@@ -196,7 +196,7 @@ public class Controller {
 
         adressBook.removeContact(contactToRemove);
 
-        FileHandler.saveData(adressBook.getContacts(), categoryComboBox.getValue());
+        adressBook.save();
 
         updateTable();
     }
