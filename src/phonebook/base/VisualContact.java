@@ -40,7 +40,7 @@ public class VisualContact {
         return location.get();
     }
 
-    public String getCellPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber.get();
     }
 
