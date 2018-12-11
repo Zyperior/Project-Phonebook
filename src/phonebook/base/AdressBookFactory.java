@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class AdressBookFactory {
 
-	public static AdressBook createAdressBook(ArrayList<Contact> contacts, String userName) {
+	public static AdressBook createAdressBook(String category) {
 		
-		return new AdressBook(contacts, userName);
+		return new AdressBook(category);
 	}
 }

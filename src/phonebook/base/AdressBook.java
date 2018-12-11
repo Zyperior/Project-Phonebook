@@ -6,12 +6,15 @@ package phonebook.base;
 
 import java.util.ArrayList;
 
+import phonebook.base.tools.SearchAdressBook;
+import phonebook.storage.StoreHandler;
+
 
 public class AdressBook {
 
 	
-
-	String userName;
+	StoreHandler sh = new StoreHandler();
+	String category;
 	ArrayList<Contact> contacts; // Stores all contacts
 	
 	/*
@@ -27,9 +30,9 @@ public class AdressBook {
 		}
 	}	
 	
-	public AdressBook(ArrayList<Contact> contacts, String userName) {
-		this(contacts);
-		this.userName = userName;
+	public AdressBook(String category) {
+		this.category = category;
+		sh.loadData(category);
 	}
 	/*
 	 * no args constructor
@@ -51,7 +54,7 @@ public class AdressBook {
 	
 	//removes selected contact from contacts arraylist
 	public void removeContact(Contact contact) {
-		contacts.remove(getIndexOf(contact));
+		contacts.remove(contact);
 	}
 	
 	//Takes Contact as parameter. returns the index of the contact in the contacts arraylist
@@ -63,6 +66,10 @@ public class AdressBook {
 			}
 		}
 		return null;
+	}
+	
+	public ArrayList<VisualContact> search(String lastName, String firstName, String location, String phoneNumber){
+		return SearchAdressBook.searchContacts(contacts, lastName, firstName, location, phoneNumber);
 	}
 	
 	//OUTDATED
@@ -256,10 +263,10 @@ public class AdressBook {
 			throw new IllegalArgumentException("ERROR! lastName must be a String");
 		}
 		
-		if (contact.getCellPhoneNumber()==null) {
-			throw new NullPointerException("ERROR! cellPhoneNumber can not be null!");
-		}else if (!contact.getCellPhoneNumber().getClass().equals(String.class)) {
-			throw new IllegalArgumentException("ERROR! cellPhoneNumber must be of type String");
+		if (contact.getPhoneNumber()==null) {
+			throw new NullPointerException("ERROR! phoneNumber can not be null!");
+		}else if (!contact.getPhoneNumber().getClass().equals(String.class)) {
+			throw new IllegalArgumentException("ERROR! phoneNumber must be of type String");
 		}
 		
 		if (contact.getLocation()==null) {
@@ -276,7 +283,7 @@ public class AdressBook {
 	}
 
 	public String getUserName() {
-		return userName;
+		return category;
 	}	
 	
 }
