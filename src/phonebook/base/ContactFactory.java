@@ -9,7 +9,7 @@ public class ContactFactory {
 	// firstname min & max length
 	private final static int fnMin = 2;
 	private final static int fnMax = 20;
-	// firstname min & max length
+	// lastname min & max length
 	private final static int lnMin = 2;
 	private final static int lnMax = 20;
 	// location min & max length
@@ -27,8 +27,7 @@ public class ContactFactory {
 			throw new IllegalArgumentException(
 					"Ivalid input: Lastname," + lnMin + "-" + lnMax + ":chars, [a-ö] is valid");
 		}
-		// if regex regex doesnt match firstname for characters and length cast
-		// exception
+		// if regex regex doesnt match firstname for characters and length cast exception
 		if (!firstName.matches("([a-zA-Z]|å|Å|ä|Ä|ö|Ö){" + fnMin + "," + fnMax + "}$")) {
 			throw new IllegalArgumentException(
 					"Invalid input: Firstname," + fnMin + "-" + fnMax + ":chars, [a-ö] is valid");
@@ -38,8 +37,7 @@ public class ContactFactory {
 			throw new IllegalArgumentException(
 					"Invalid input: Location," + lnMin + "-" + lnMax + ":chars, [a-ö] is valid");
 		}
-		// if regex regex doesnt match phonenumber for characters and length cast
-		// exception
+		// if regex regex doesnt match phonenumber for characters and length cast exception
 		if (!phoneNumber.matches("([0-9]|-|){" + pMin + "," + pMax + "}$")) {
 			throw new IllegalArgumentException(
 					"Invalid input: Phonenumber," + lnMin + "-" + lnMax + ":chars, [0-9] & - is valid");
