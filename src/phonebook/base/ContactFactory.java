@@ -7,11 +7,11 @@ package phonebook.base;
 public class ContactFactory {
 
 
-    public static Contact createContact(String firstName, String lastName, String location, String cellPhoneNumber) {
+    public static Contact createContact(String lastName, String firstName, String location, String cellPhoneNumber) {
 
    
 
-        return new Contact(firstName,lastName,location,cellPhoneNumber);
+        return new Contact(lastName,firstName,location,cellPhoneNumber);
     }
 
 }
