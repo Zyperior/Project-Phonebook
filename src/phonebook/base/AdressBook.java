@@ -6,6 +6,7 @@ package phonebook.base;
 
 import java.util.ArrayList;
 
+import phonebook.base.tools.SearchAdressBook;
 import phonebook.storage.StoreHandler;
 
 
@@ -65,6 +66,10 @@ public class AdressBook {
 			}
 		}
 		return null;
+	}
+	
+	public ArrayList<VisualContact> search(String lastName, String firstName, String location, String phoneNumber){
+		return SearchAdressBook.searchContacts(contacts, lastName, firstName, location, phoneNumber);
 	}
 	
 	//OUTDATED
