@@ -72,7 +72,7 @@ public class Controller {
                 new PropertyValueFactory<>("location"));
 
         tablePhoneColumn.setCellValueFactory(
-                new PropertyValueFactory<>("cellPhoneNumber"));
+                new PropertyValueFactory<>("phoneNumber"));
         //--------------------------------------------------------
 
         //Textfield settings:
@@ -174,7 +174,7 @@ public class Controller {
         String location = locationTextField.getText();
         String phoneNumber = phoneTextField.getText();
 
-        adressBook.addContact(ContactFactory.createContact(firstName,lastName,location,phoneNumber));
+        adressBook.addContact(ContactFactory.createContact(lastName,firstName,location,phoneNumber));
 
         FileHandler.saveData(adressBook.getContacts(), categoryComboBox.getValue());
 
@@ -206,6 +206,7 @@ public class Controller {
      */
     private void loadCategoryAdressBook(String category){
         adressBook = new AdressBook(category);
+        updateTable();
     }
 
 }
