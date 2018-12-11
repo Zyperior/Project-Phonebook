@@ -8,7 +8,7 @@ public class FileHandler {
 
 
     // Reads input from file and returns an arraylist. Returns an empty list if file does not exist.
-    public ArrayList<Contact> retrieveListFromFile(String category){
+    public static ArrayList<Contact> retrieveListFromFile(String category){
         ArrayList<Contact> contacts = new ArrayList<>();
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(category + ".txt"))){
             contacts = (ArrayList<Contact>) in.readObject();
@@ -25,7 +25,7 @@ public class FileHandler {
     }
 
     // Writes Arraylist to file
-    public void saveData(ArrayList<Contact> list, String category){
+    public static void saveData(ArrayList<Contact> list, String category){
         try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(category + ".txt"))){
             out.writeObject(list);
         } catch (FileNotFoundException e) {
