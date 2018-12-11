@@ -1,5 +1,5 @@
 package phonebook.storage;
-import phonebook.base.*;
+import phonebook.base.Contact;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -7,11 +7,13 @@ import java.util.ArrayList;
 public class FileHandler {
 
 
-    // Reads input from file and returns an arraylist
-    public ArrayList<Contact> retrieveListFromFile(){
+    // Reads input from file and returns an arraylist. Returns an empty list if file does not exist.
+    public ArrayList<Contact> retrieveListFromFile(String category){
         ArrayList<Contact> contacts = new ArrayList<>();
-        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("AdressBook.txt"))){
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(category + ".txt"))){
             contacts = (ArrayList<Contact>) in.readObject();
+        } catch (EOFException e){
+            System.out.println("No file exists. New file created");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -23,8 +25,8 @@ public class FileHandler {
     }
 
     // Writes Arraylist to file
-    public void saveData(ArrayList<Contact> list){
-        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("AdressBook.txt"))){
+    public void saveData(ArrayList<Contact> list, String category){
+        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(category + ".txt"))){
             out.writeObject(list);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
