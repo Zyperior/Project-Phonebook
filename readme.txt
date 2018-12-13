@@ -6,12 +6,17 @@
         +-- storage
 
 
-ROADMAP
+Put your junit5(jupiter) tests in:
+src/test/java/ Using our pkg structure
+If we wanted to test the Contact class:
+src/test/java/phonebook/base/ContactTest.java
 
-|       GUI                    			    |CLASS THAT MAKES ADR BK OBJ                  |CLASS THAT SAVES DATA
-| enter username       	           	            |//can be replaced with factory call  	  |saveFile(STRING,LIST)
-|   click ok(calls factory/constructor with STRING)->Constructor(string s)      		  |returns nothing
-|					   	    |this.list = calls öyvins retrieve list(s)}   |
-|					            |this.username = s;	                          |loadFile(STRING)
-|						    |//method for saving                          |returns LIST
-|						    | calls öyvins save method(username,list)     |//list can be full or empty
+Want to create a jar?
+clone the project from github
+extract the folder
+open bash
+locate the folder
+type: mvn package
+The jar file will be located in the target folder
+
+
