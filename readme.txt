@@ -1,9 +1,10 @@
-+-- src
-    +-- phonebook
-        +-- base
-        +-- gui
-        +-- run
-        +-- storage
+
+Our phonebook is a user friendly program for storing your contacts phonenumbers.
+The Gui is lightweight and blazingly fast with minimal clutter. 
+The program stores and loads categories separately. 
+As you might for example want to separate your personal life from work.
+
+We wrote the software with the intent to allow future updates in terms of added functionality.
 
 
 Put your junit5(jupiter) tests in:
