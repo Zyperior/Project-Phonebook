@@ -1,10 +1,10 @@
 /*
 Robin Säfström ITHS 2018
 
-Two step sort
+Three step sort
 1. sort by firstname
 2. sort by lastname
-
+3. sort by location
  How to use? your_arrayList = Sort.sort(your_arrayList);
  *
  */
@@ -19,7 +19,8 @@ import java.util.Comparator;
 public class Sort {
 
 	public static ArrayList<Contact> sort(ArrayList<Contact> arr) {
-		Collections.sort(arr, new SortByFirstNameComparator().thenComparing(new SortByLastNameComparator().thenComparing(new SortByLocationComparator())));
+		Collections.sort(arr, new SortByFirstNameComparator()
+				.thenComparing(new SortByLastNameComparator().thenComparing(new SortByLocationComparator())));
 		return arr;
 	}
 
