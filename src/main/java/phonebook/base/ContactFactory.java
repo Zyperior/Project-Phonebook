@@ -23,24 +23,26 @@ public class ContactFactory {
 	public static Contact createContact(String lastName, String firstName, String location, String phoneNumber) {
 
 		// if regex regex doesnt match lastname for characters and length cast exception
-		if (!lastName.matches("([a-zA-Z]|å|Å|ä|Ä|ö|Ö){" + lnMin + "," + lnMax + "}$")) {
+		if (lastName == null || !lastName.matches("([a-zA-Z]|å|Å|ä|Ä|ö|Ö){" + lnMin + "," + lnMax + "}$")) {
 			throw new IllegalArgumentException(
 					"Ivalid input: Lastname," + lnMin + "-" + lnMax + ":chars, [a-ö] is valid");
 		}
-		// if regex regex doesnt match firstname for characters and length cast exception
-		if (!firstName.matches("([a-zA-Z]|å|Å|ä|Ä|ö|Ö){" + fnMin + "," + fnMax + "}$")) {
+		// if regex regex doesnt match firstname for characters and length cast
+		// exception
+		if (firstName == null || !firstName.matches("([a-zA-Z]|å|Å|ä|Ä|ö|Ö){" + fnMin + "," + fnMax + "}$")) {
 			throw new IllegalArgumentException(
 					"Invalid input: Firstname," + fnMin + "-" + fnMax + ":chars, [a-ö] is valid");
 		}
 		// if regex regex doesnt match location for characters and length cast exception
-		if (!location.matches("([a-zA-Z]|å|Å|ä|Ä|ö|Ö){" + lnMin + "," + lnMax + "}$")) {
+		if (location == null || !location.matches("([a-zA-Z]|å|Å|ä|Ä|ö|Ö){" + lMin + "," + lMax + "}$")) {
 			throw new IllegalArgumentException(
-					"Invalid input: Location," + lnMin + "-" + lnMax + ":chars, [a-ö] is valid");
+					"Invalid input: Location," + lMin + "-" + lMax + ":chars, [a-ö] is valid");
 		}
-		// if regex regex doesnt match phonenumber for characters and length cast exception
-		if (!phoneNumber.matches("([0-9]|-|){" + pMin + "," + pMax + "}$")) {
+		// if regex regex doesnt match phonenumber for characters and length cast
+		// exception
+		if (phoneNumber == null || !phoneNumber.matches("([0-9]|-|){" + pMin + "," + pMax + "}$")) {
 			throw new IllegalArgumentException(
-					"Invalid input: Phonenumber," + lnMin + "-" + lnMax + ":chars, [0-9] & - is valid");
+					"Invalid input: Phonenumber," + pMin + "-" + pMax + ":chars, [0-9] & - is valid");
 		}
 
 		// return a new Contact object
