@@ -6,7 +6,7 @@
                                           
 
 Our phonebook is a user friendly program for storing your contacts phonenumbers.
-The Gui is lightweight and blazingly fast with minimal clutter. 
+The Gui is lightweight and blazing fast with minimal clutter. 
 The program stores and loads categories separately. 
 As you might for example want to separate your personal life from work.
 
@@ -32,7 +32,7 @@ step 5. Select a contact from the table and press Remove contact to remove your 
 Some general information. The software will create a maximum of 3 files on your computer. They will be created in the directory from you RUN the software.
 The software will only load a file once you selected the category. 
 Imagine if the category was instead users with their separate logins, wouldnt it make sense to only load that specific users data to prevent potential leaks?
-While it might not make much sense in protecting categorys our mindset was to create a solid framework that would be utilized further in the future.
+While it might not make much sense in protecting categories our mindset was to create a solid framework that would be utilized further in the future.
 
 Build instructions:
 
@@ -53,6 +53,7 @@ Under build select invoke top-level maven targets.
 In the goal field type a desired function package,compile,test etc.
 It's recommended to add clean before your command if you previously built it.
 Dont add the pom files location as its already located in the project root and will be found by jenkins. Leave the field empty.
+Save your job and run it.
 Locate the job in your computers jenkins-workspace and open the target folder where you will find the .jar (Project-Phonebook-1.0-SNAPSHOT.jar)
 If you cant double click the jar file to open it, use bash or cmd with the command: java -jar filename.jar
 
