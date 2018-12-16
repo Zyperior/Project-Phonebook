@@ -12,7 +12,8 @@ class AdressBookFactoryTest {
 	@Test
 	void nullTest() {
 		String category = "test";
-		AdressBook returnedAdressBook = AdressBookFactory.createAdressBook(category);  
+		classUnderTest = new AdressBookFactory();
+		AdressBook returnedAdressBook = classUnderTest.createAdressBook(category);  
 		assertTrue(returnedAdressBook != null && returnedAdressBook.category != null);
 	}
 
@@ -20,7 +21,8 @@ class AdressBookFactoryTest {
 	@Test
 	void typeTest( ) {
 		String category = "test";
-		AdressBook returnedAdressBook = AdressBookFactory.createAdressBook(category);  
+		classUnderTest = new AdressBookFactory();
+		AdressBook returnedAdressBook = classUnderTest.createAdressBook(category);  
 		assertEquals(AdressBook.class, returnedAdressBook.getClass());
 	}
 	
