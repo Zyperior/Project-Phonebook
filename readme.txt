@@ -15,7 +15,7 @@ We wrote the software with the intent to allow future updates in terms of added 
 How does it work?
 When you open the program you will be presented with a graphical user interface with an empty table.
 There will be 4 text inputs, Last name,first name,location and phone number.
-There is also an drop box where you select what category to work in.
+There is also a drop box where you select what category to work in.
 Step 1. Select a category. (home is default)
 
 Constraints for inputs are the following: first name & last name & location = min 2chars, max 20chars. Swedish locale no digits allowed. 
