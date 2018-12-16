@@ -13,7 +13,7 @@ class AdressBookFactoryTest {
 	void nullTest() {
 		String category = "test";
 		classUnderTest = new AdressBookFactory();
-		AdressBook returnedAdressBook = classUnderTest.createAdressBook(category);  
+		AdressBook returnedAdressBook = classUnderTest.createAdressBook(category);
 		assertTrue(returnedAdressBook != null && returnedAdressBook.category != null);
 	}
 
