@@ -12,7 +12,7 @@ import phonebook.storage.StoreHandler;
 
 public class AdressBook {
 
-	
+	//Fields
 	StoreHandler sh = new StoreHandler();
 	String category;
 	ArrayList<Contact> contacts; // Stores all contacts
@@ -23,6 +23,7 @@ public class AdressBook {
 	 * else instantiates a new ArrayList. 
 	 */
 	
+	//String constructor
 	public AdressBook(String category) {
 		this.category = category;
 		contacts = sh.loadData(category);
@@ -50,10 +51,12 @@ public class AdressBook {
 		contacts.remove(contact);
 	}
 
+	//Takes 4 strings as parameters. returns an araylist containing VisualContact objects
 	public ArrayList<VisualContact> search(String lastName, String firstName, String location, String phoneNumber){
 		return SearchAdressBook.searchContacts(contacts, lastName, firstName, location, phoneNumber);
 	}
 	
+	//saves list to file using the filehandler field 
 	public void save() {
 		sh.saveData(contacts, category);
 	}
