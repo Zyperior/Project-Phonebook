@@ -65,9 +65,6 @@ public class ControllerTest extends ApplicationTest {
 
     @Test
     void verifyUpdateTableWithNoParameters(){
-        ArrayList<VisualContact> tempList = new ArrayList<>();
-        tempList.add(testVisualContact);
-        controller.contactTable.setItems(FXCollections.observableList(tempList));
         int tableSize = controller.contactTable.getItems().size();
         controller.updateTable();
         assertEquals(controller.contactTable.getItems().size(),tableSize);
