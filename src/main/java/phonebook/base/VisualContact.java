@@ -28,6 +28,22 @@ public class VisualContact {
         this.phoneNumber = new SimpleStringProperty(c.getPhoneNumber());
     }
 
+    public SimpleStringProperty getFirstNameProperty(){
+        return firstName;
+    }
+
+    public SimpleStringProperty getLastNameProperty(){
+        return lastName;
+    }
+
+    public SimpleStringProperty getLocationProperty(){
+        return location;
+    }
+
+    public SimpleStringProperty getPhoneNumberProperty(){
+        return phoneNumber;
+    }
+
     public String getFirstName() {
         return firstName.get();
     }
