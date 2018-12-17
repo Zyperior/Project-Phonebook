@@ -16,7 +16,6 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    private Parent root;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -24,11 +23,11 @@ public class Main extends Application {
         Controller controller;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/GUI.fxml"));
-        root = loader.load();
+        Parent root = loader.load();
 
         controller = loader.getController();
-        controller.setStage(primaryStage);
         controller.init();
+        primaryStage.setResizable(false);
 
         primaryStage.setTitle("PhoneBook");
         primaryStage.setScene(new Scene(root));
@@ -42,9 +41,4 @@ public class Main extends Application {
 
     }
 
-    public Parent getRoot() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/GUI.fxml"));
-        root = loader.load();
-        return root;
-    }
 }
