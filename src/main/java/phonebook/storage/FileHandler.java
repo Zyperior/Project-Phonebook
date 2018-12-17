@@ -13,7 +13,7 @@ public class FileHandler {
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(category + ".txt"))){
             contacts = (ArrayList<Contact>) in.readObject();
         } catch (EOFException e){
-            System.out.println("No file exists. New file created");
+         
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
