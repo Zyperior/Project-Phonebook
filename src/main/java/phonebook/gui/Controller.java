@@ -42,8 +42,6 @@ public class Controller {
     Button removeContactButton;
     @FXML
     ComboBox<String> categoryComboBox;
-    @FXML
-    Label errorLabel;
 
     AdressBook adressBook;
 
@@ -139,7 +137,6 @@ public class Controller {
                 break;
             }
         }
-        errorLabel.setVisible(false);
     }
 
     /*
@@ -164,8 +161,7 @@ public class Controller {
             adressBook.addContact(ContactFactory.createContact(lastName,firstName,location,phoneNumber));
         }
         catch(Exception e){
-            errorLabel.setText(e.getMessage());
-            errorLabel.setVisible(true);
+
         }
 
 
