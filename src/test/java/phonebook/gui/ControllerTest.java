@@ -1,7 +1,9 @@
 package phonebook.gui;
 
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +12,8 @@ import phonebook.base.AdressBook;
 import phonebook.base.Contact;
 import phonebook.base.VisualContact;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,7 +31,7 @@ public class ControllerTest extends ApplicationTest {
     public void start(Stage primaryStage) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/GUI.fxml"));
-        loader.load();
+        Parent root = loader.load();
 
         controller = loader.getController();
 
@@ -61,6 +65,9 @@ public class ControllerTest extends ApplicationTest {
 
     @Test
     void verifyUpdateTableWithNoParameters(){
+        ArrayList<VisualContact> tempList = new ArrayList<>();
+        tempList.add(testVisualContact);
+        controller.contactTable.setItems(FXCollections.observableList(tempList));
         int tableSize = controller.contactTable.getItems().size();
         controller.updateTable();
         assertEquals(controller.contactTable.getItems().size(),tableSize);
@@ -68,6 +75,9 @@ public class ControllerTest extends ApplicationTest {
 
     @Test
     void verifyUpdateTableWithParameters(){
+        ArrayList<VisualContact> tempList = new ArrayList<>();
+        tempList.add(testVisualContact);
+        controller.contactTable.setItems(FXCollections.observableList(tempList));
         int tableSize = controller.contactTable.getItems().size();
         controller.updateTable("0000000000000000000000000000", "","","");
         assertTrue(controller.contactTable.getItems().size() < tableSize);
