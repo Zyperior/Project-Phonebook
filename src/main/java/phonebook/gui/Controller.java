@@ -15,7 +15,10 @@ import phonebook.base.VisualContact;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Controllerclass for main GUI. Sets initialized parameters for components.
+ * Controls front-end functionality between class objects.
+ */
 public class Controller {
 
     @FXML
@@ -149,6 +152,7 @@ public class Controller {
     /*
     Adds contact to current list with current values.
     Resets values to "" if successful.
+    Exception thrown in addContact method currently not used but may get implemented later.
      */
     @FXML
     void addContactClick(){
@@ -161,7 +165,7 @@ public class Controller {
             adressBook.addContact(ContactFactory.createContact(lastName,firstName,location,phoneNumber));
         }
         catch(Exception e){
-
+            e.printStackTrace();
         }
 
 
