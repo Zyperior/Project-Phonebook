@@ -1,4 +1,4 @@
-package test.java.phonebook.storage;
+package phonebook.storage;
 import org.junit.jupiter.api.Test;
 import phonebook.base.Contact;
 import phonebook.storage.StoreHandler;
