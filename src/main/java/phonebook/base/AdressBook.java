@@ -7,6 +7,7 @@ package phonebook.base;
 import java.util.ArrayList;
 
 import phonebook.base.tools.SearchAdressBook;
+import phonebook.base.tools.Sort;
 import phonebook.storage.StoreHandler;
 
 
@@ -38,11 +39,13 @@ public class AdressBook {
 
 	
 	/*
-	 * adds a Contact object to the arraylist contacts if the Contact object is successfully verified
+	 * adds a Contact object to the arraylist contacts if the Contact object is successfully verified.
+	 * Then sorts the contacts arraylist
 	 */
 	public void addContact(Contact contact) {
 		if (verifyContactObject(contact)) {
 			this.contacts.add(contact);
+			contacts = Sort.sort(contacts);
 		}
 	}
 	
