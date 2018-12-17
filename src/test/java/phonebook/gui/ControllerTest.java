@@ -58,6 +58,10 @@ public class ControllerTest extends ApplicationTest {
 
     @Test
     void verifyRemoveContactButtonInitializationParameters(){
+        ArrayList<VisualContact> tempList = new ArrayList<>();
+        tempList.add(testVisualContact);
+        controller.contactTable.setItems(FXCollections.observableList(tempList));
+
         assertTrue(controller.removeContactButton.isDisabled());
         controller.contactTable.getSelectionModel().select(0);
         assertFalse(controller.removeContactButton.isDisabled());
