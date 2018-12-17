@@ -20,8 +20,12 @@ public class VisualContact {
     /**
      *
      * Copyconstructor for creating a visual copy of contact-object
+     * @param c Must be a valid Contact-object. Cannot be null.
      */
     public VisualContact(Contact c){
+        if(c==null){
+            throw new IllegalArgumentException("Parameter cannot be null");
+        }
         this.firstName = new SimpleStringProperty(c.getFirstName());
         this.lastName = new SimpleStringProperty(c.getLastName());
         this.location = new SimpleStringProperty(c.getLocation());
