@@ -64,5 +64,32 @@ Thats where your jobs are saved locally and where you can find the job and then 
 We assume linux users already configured their workspace to something specific of atleast knows where it is :)
 
 
+TROUBLESHOOTING:
 
+1. My software doesnt create any files!?
+You need permission to write files!
+Keep in mind the software works like this.
+
+Lets say you dont have admin/root privileges and are located in c:\\ or root <- in bash cmd
+The software is located in somewhere you have write acces in (home / user / whatever)
+PWD : root / c:\\
+If you run the softare with something like java -jar /home/users/blabla/blabla/program.jar
+Then the softare will try to create will in your current PWD where you most likely dont have write acces in.
+
+So to solve this make sure you are located in a directory you have write acces in like this for example:
+PWD = home/users/blabla/blabla
+java -jar program.jar
+
+2. I cant run the program at all!? what is this .jar file?
+The jar file is simply a prepackaged java file with all dependencies baked in. You still need java 1.8 to run it.
+
+3. My contact wasnt added to the table?!
+Your information didnt meet the constraints.
+
+Constraints for inputs are the following: first name & last name & location = min 2chars, max 20chars. Swedish locale no digits allowed. 
+Phone number = min 2 digits, max 20 digits. dash is allowed.
+
+4. I double click the .jar file but nothing happens!?
+This is entirely dependant on your java configuration. We recommend running the program from cmd/bash. 
+Please check the points above regarding file permission to negate any further issues :)
 
