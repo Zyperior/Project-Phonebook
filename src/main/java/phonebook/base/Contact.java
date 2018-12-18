@@ -79,6 +79,11 @@ public class Contact implements java.io.Serializable {
 	// custom getter used by search method
 	public String getContactValueByIndex(int index) {
 
+		//safety to avoid nullPointerException in search
+		if(index>3){
+			index = 3;
+		}
+
 		switch (index) {
 		case 0:
 			return lastName;
