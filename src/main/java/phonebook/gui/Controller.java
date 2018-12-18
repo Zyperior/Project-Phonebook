@@ -165,7 +165,6 @@ public class Controller {
             adressBook.addContact(ContactFactory.createContact(lastName,firstName,location,phoneNumber));
         }
         catch(Exception e){
-            e.printStackTrace();
         }
 
 
