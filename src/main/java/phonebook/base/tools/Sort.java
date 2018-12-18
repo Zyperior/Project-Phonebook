@@ -19,8 +19,17 @@ import java.util.Comparator;
 public class Sort {
 
 	public static ArrayList<Contact> sort(ArrayList<Contact> arr) {
+		
+		try {
 		Collections.sort(arr, new SortByFirstNameComparator()
 				.thenComparing(new SortByLastNameComparator().thenComparing(new SortByLocationComparator())));
+		}
+		catch(Exception e) {
+			System.err.println("A null was sent to the comparator, the software is either compromised or your computer has io/ram issues.");
+			System.exit(0);
+		}
+		
+		
 		return arr;
 	}
 
