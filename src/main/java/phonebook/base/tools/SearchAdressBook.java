@@ -1,4 +1,4 @@
-/* Date dd-mm-yyyy: 10-12-2018
+/* Date: 2018-12-10
  * Author: Andreas Albihn
  */
 
@@ -17,7 +17,7 @@ public class SearchAdressBook {
      * Standard parameters for the current version of the program.
      * If amount of values in GUI table changes, this might need to be adjusted.
      */
-    private static final int LIMIT_SEARCH_INDEX = 4;
+    private static int limit_search_index = 0;
     private static final int START_SEARCH_INDEX = 0;
     private static final String EMPTY_SEARCH_VALUE = "";
 
@@ -28,12 +28,21 @@ public class SearchAdressBook {
      * @param firstName Search value, if null set  to ""
      * @param location Search value, if null set to ""
      * @param phoneNumber Search value, if null set to ""
-     * @return
      */
     public static ArrayList<VisualContact> searchContacts(ArrayList<Contact> contacts, String lastName, String firstName, String location, String phoneNumber){
 
-        //Add values to an array
-        String[] searchValues = new String[LIMIT_SEARCH_INDEX];
+        //Throw exception if list is null.
+        if(contacts==null){
+            throw new IllegalArgumentException("ArrayList can not be null");
+        }
+
+
+        /**
+         * Search values are added to array.
+         * NOTE: The size of this array determines the limit_search_index to avoid nullpointerexception.
+         * Adjust accordingly to fit current settings in program.
+         */
+        String[] searchValues = new String[4];
         searchValues[0] = lastName;
         searchValues[1] = firstName;
         searchValues[2] = location;
@@ -45,6 +54,8 @@ public class SearchAdressBook {
                 searchValues[i] = "";
             }
         }
+
+        limit_search_index = searchValues.length;
 
         //Create resultlist through recursive method (see below)
         ArrayList<Contact> searchResult = iterateSearchResults(contacts, searchValues, START_SEARCH_INDEX);
@@ -80,7 +91,10 @@ public class SearchAdressBook {
      *              Cannot exceed internal final int LIMIT_SEARCH_INDEX.
      * @return
      */
-    private static ArrayList<Contact> iterateSearchResults(ArrayList<Contact> contactList, String[] searchValues, int index){
+    static ArrayList<Contact> iterateSearchResults(ArrayList<Contact> contactList, String[] searchValues, int index){
+        if(index >= limit_search_index){
+            throw new RuntimeException("Index can not be greater or equals the limit set by the string array");
+        }
 
         //Set current searchValue by current index value
         String searchValue = searchValues[index].toLowerCase();
@@ -114,8 +128,9 @@ public class SearchAdressBook {
             index++;
 
             //If index has reached the current amount possible values to look up, return the result list to caller.
-            if(index==LIMIT_SEARCH_INDEX)
+            if(index==limit_search_index){
                 return results;
+            }
 
             //If index not reached limit, call this method again with new result list, same search values and new index value
             return iterateSearchResults(results, searchValues, index);
@@ -127,7 +142,7 @@ public class SearchAdressBook {
         index++;
 
         //If index has reached the current amount possible values to look up, return the current list to caller.
-        if(index==LIMIT_SEARCH_INDEX)
+        if(index==limit_search_index)
             return contactList;
 
         //If index not reached limit, call this method again with current list, same search values and new index value
